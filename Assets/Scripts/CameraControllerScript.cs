@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraControllerScript : MonoBehaviour {
 
-    private Transform player;
+    private GameObject player;
+    public float smooth = 5.0f;
+    private Vector3 offset;
     // Start is called before the first frame update
     void Start() {
-    }
-    
-    public void findPlayer() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+        offset = transform.position - player.transform.position;
     }
 
+
     void Update() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        transform.position = player.position;
+        transform.position = Vector3.Lerp(transform.position, player.transform.position + offset, Time.deltaTime * smooth);
     }
 }
