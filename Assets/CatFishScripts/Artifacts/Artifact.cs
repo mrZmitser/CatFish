@@ -6,12 +6,24 @@ using System.Threading.Tasks;
 
 namespace CatFishScripts.Artifacts {
     abstract class Artifact {
-        uint Power {
+        //Сила артефакта
+        public uint Power {
             get;
             set;
         }
-        bool IsRechargeable {
+        //"Восстанавливаемость" артефакта
+        public bool IsRechargeable {
             get;
+            set;
         }
+
+
+        //Конструктор
+        protected Artifact(uint power, bool isRechargeable) {
+            this.Power = power;
+            this.IsRechargeable = isRechargeable;
+        }
+
+
     }
 }

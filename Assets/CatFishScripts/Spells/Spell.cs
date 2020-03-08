@@ -8,38 +8,46 @@ using CatFishScripts.Characters;
 namespace CatFishScripts.Spells {
     abstract class Spell : IMagic {
         //Минимальное значение маны для выполнения заклинания
-        uint Cost {
+        public uint Cost {
             get;
             set;
         }
         //Наличие вербальной компоненты
-        bool IsVerbal {
+        public bool IsVerbal {
             get;
             set;
         }
         //Наличие моторной компоненты
-        bool IsMotor {
+        public bool IsMotor {
             get;
             set;
         }
         //Имеет ли заклинание силу
-        bool HasPower {
+        public bool HasPower {
             get;
             set;
         }
+        //
+        public abstract void onCast(CharacterMagician character, uint power);
         //Реализация интерфейса IMagic (выполнение заклинания)
-        abstract public void castSpell(Character character, uint power);
-
+        public void castSpell(CharacterMagician character, uint power) {
+            if (power > character.Mana) {
+                throw new ArgumentException("Not enough mana");
+            }
+            onCast(character, power);
+            if (this.HasPower) {
+                character.Mana -= Cost * power;
+            } else {
+                character.Mana -= Cost;
+            }
+        }
 
         //Конструктор
-        protected Spell(uint cost, bool isVerbal, bool isMotor, bool hasPower) {
+        public Spell(uint cost, bool isVerbal, bool isMotor, bool hasPower) {
             this.Cost = cost;
             this.IsVerbal = isVerbal;
             this.IsMotor = isMotor;
             this.HasPower = hasPower;
         }
-
-        //TODO:
-        //1. Реализовать классы-наследники данного заклинания (ЛЁША)
     }
 }

@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace CatFishScripts.Spells {
     interface IMagic {
-        void castSpell(Characters.Character character, uint power);
+        void castSpell(Characters.CharacterMagician character = null, uint power = 0);
     }
 }

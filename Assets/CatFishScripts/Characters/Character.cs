@@ -11,10 +11,16 @@ namespace CatFishScripts.Characters {
         public uint Id {
             get;
         }
-        public enum ConditionType { healthy, weakened, ill, poisoned, paralyzed, dead };
+        public enum ConditionType { invulnerable, healthy, weakened, ill, poisoned, paralyzed, dead };
+        private ConditionType _condition;
         public ConditionType Condition {
-            get;
-            set;
+            get {
+                return _condition;
+            }
+            set {
+                _condition = value;
+                checkCondition();
+            }
         }
         public bool isTalkable {
             get;
@@ -43,20 +49,29 @@ namespace CatFishScripts.Characters {
                 return _hp;
             }
             set {
-                if ((int) value <= 0) {
-                    Condition = ConditionType.dead;
+                if ((int)value <= 0) {
                     value = 0;
-                }
-                if (value > 0 && value < 10) {
-                    Condition = ConditionType.weakened;
-                }
-                if (value >= 10) {
-                    Condition = ConditionType.healthy;
                 }
                 _hp = value;
                 if (_hp > MaxHp) {
                     _hp = MaxHp;
                 }
+                checkCondition();
+            }
+        }
+        private void checkCondition() {
+            if (Condition != ConditionType.healthy && Condition == ConditionType.weakened 
+                && Condition == ConditionType.dead) {
+                return;
+            }
+            if (Hp == 0) {
+                _condition = ConditionType.dead;
+            }
+            if (Hp > 0 && Hp < 10) {
+                _condition = ConditionType.weakened;
+            }
+            if (Hp >= 10) {
+                _condition = ConditionType.healthy;
             }
         }
         public uint MaxHp {

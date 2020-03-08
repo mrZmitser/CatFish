@@ -10,6 +10,8 @@ namespace CatFishScripts {
             Console.WriteLine("{0}, {1}", s.Hp, s.Condition.ToString());
             Console.WriteLine(s.ToString());
             Console.ReadKey();
+            Spells.AddHealth ssss = new Spells.AddHealth(20, true, true, true);
+
         }
     }
 }
