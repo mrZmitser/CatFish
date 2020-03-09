@@ -1,0 +1,7 @@
+D:\dimag\Study\c# proj\CatFishScripts\bin\Debug\CatFishScripts.exe.config
+D:\dimag\Study\c# proj\CatFishScripts\bin\Debug\CatFishScripts.exe
+D:\dimag\Study\c# proj\CatFishScripts\bin\Debug\CatFishScripts.pdb
+D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.csprojAssemblyReference.cache
+D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.csproj.CoreCompileInputs.cache
+D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.exe
+D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.pdb
