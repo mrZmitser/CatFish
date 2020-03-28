@@ -5,3 +5,10 @@ D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.csprojAssemblyRef
 D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.csproj.CoreCompileInputs.cache
 D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.exe
 D:\dimag\Study\c# proj\CatFishScripts\obj\Debug\CatFishScripts.pdb
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.csprojAssemblyReference.cache
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.csproj.CoreCompileInputs.cache
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.exe
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.pdb
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.exe.config
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.exe
+C:\Users\alexe\Documents\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.pdb

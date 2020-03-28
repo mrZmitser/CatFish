@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Characters\CharacterShop.cs" />
+    <Compile Include="Characters\CharactersNPS.cs" />
+    <Compile Include="Characters\QuestCharacter.cs" />
+    <Compile Include="InventoryCsharp\InventoryCsharp.cs" />
     <Compile Include="Spells\AddHealth.cs" />
     <Compile Include="Artifacts\Artifact.cs" />
     <Compile Include="Characters\Character.cs" />

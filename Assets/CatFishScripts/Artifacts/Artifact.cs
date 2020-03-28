@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace CatFishScripts.Artifacts {
     abstract class Artifact {
+
+        public enum KindType { armor, weapon, other };
+
+        public KindType Kind
+        {
+            get;
+        }
+
         //Сила артефакта
         public uint Power {
             get;
