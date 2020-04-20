@@ -1,17 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace CatFishScripts.Spells {
     class Armor : Spell {
-            public Armor(uint cost = 50, bool isVerbal = false, bool isMotor = false, bool hasPower = true)
-                : base(cost, isVerbal, isMotor, hasPower) { }
-            public override void onCast(Characters.CharacterMagician character, uint power) {
-                character.Condition = Characters.Character.ConditionType.invulnerable;
-                Thread.Sleep(2000 * (int)power);
-                character.Condition = Characters.Character.ConditionType.healthy;
+        Characters.Character character;
+        int power;
+        public Armor() : base(50, false, false, true) { }
+        public override void OnCast(Characters.Character character, uint power) {
+            if (character.Condition == Characters.Character.ConditionType.invulnerable) {
+                throw new TypeAccessException("Character is already invulnerable");
             }
+            this.power = (int)power;
+            var condition = character.Condition;
+            character.Condition = Characters.Character.ConditionType.invulnerable;
+            Thread waitingThread = new Thread(LockCondition);
+            character.Condition = condition;
+        }
+        private void LockCondition() {
+            Thread.Sleep(2000 * power);
+        }
     }
 }
+

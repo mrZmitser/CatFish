@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CatFishScripts.Characters;
+﻿using CatFishScripts.Characters;
+using System;
 
 namespace CatFishScripts.Spells {
     abstract class Spell : IMagic {
@@ -28,17 +24,17 @@ namespace CatFishScripts.Spells {
             set;
         }
         //
-        public abstract void onCast(CharacterMagician character, uint power);
+        public abstract void OnCast(Character character, uint power);
         //Реализация интерфейса IMagic (выполнение заклинания)
-        public void castSpell(CharacterMagician character, uint power) {
-            if (power > character.Mana) {
+        public void Cast(CharacterMagician initiator, Character character = null, uint power = 0) {
+            if (power > initiator.Mana) {
                 throw new ArgumentException("Not enough mana");
             }
-            onCast(character, power);
+            OnCast(character, power);
             if (this.HasPower) {
-                character.Mana -= Cost * power;
+                initiator.Mana -= Cost * power;
             } else {
-                character.Mana -= Cost;
+                initiator.Mana -= Cost;
             }
         }
 

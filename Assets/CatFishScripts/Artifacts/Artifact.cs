@@ -1,5 +1,7 @@
-﻿namespace CatFishScripts.Artifacts {
-    abstract class Artifact {
+﻿using CatFishScripts.Characters;
+
+namespace CatFishScripts.Artifacts {
+    abstract class Artifact : IMagic {
         //Сила артефакта
         public uint Power {
             get;
@@ -10,20 +12,19 @@
             get;
             set;
         }
-        //тип артефакта
-        public enum KindType { weapon, armor, other };
-        public KindType Kind {
-            get;
-            private set;
-        }
 
-        //Конструктор
-        public Artifact(KindType kind, uint power, bool isRechargeable) {
+        //конструктор
+        public Artifact(uint power, bool isRechargeable) {
             this.Power = power;
             this.IsRechargeable = isRechargeable;
-            Kind = kind;
         }
-        //Абстрактный метод активации артефакта -- у каждого артефакта свой
-        abstract public void Activate(Characters.Character character, uint power = 0);
+
+        //абстрактный метод активации артефакта
+        public abstract void OnCast(Character character, uint power);
+        //Реализация интерфейса IMagic (выполнение артефакта)
+        public  void Cast(CharacterMagician initiator = null, Character character = null, uint power = 0) {
+            OnCast(character, power);
+        }
     }
 }
+

@@ -1,17 +1,50 @@
-﻿using System;
-using CatFishScripts.Characters;
+﻿using CatFishScripts.Characters;
+using System;
 
 namespace CatFishScripts {
+    /*
+     * Задача:
+     * Описать объявленные ниже функции.
+     * Опираться при этом на скинутый ПДФ
+     * По вопросам -- пишите.
+     */
     class Program {
-        static void Main(string[] args) {
-            Character s = new Character("Zhora", Character.RaceType.elf, Character.GenderType.male, 10, 100, 80);
-            Console.WriteLine("{0}, {1}", s.Hp, s.Condition.ToString());
-            s.Hp -= 1000;
-            Console.WriteLine("{0}, {1}", s.Hp, s.Condition.ToString());
-            Console.WriteLine(s.ToString());
-            Console.ReadKey();
-            Spells.AddHealth ssss = new Spells.AddHealth(20, true, true, true);
+        static CharacterMagician ReadInfoAboutMagicianFromConsole() {
 
+            // ...
+            return new CharacterMagician(...);
+        }
+        static Character ReadInfoAboutCharacterFromConsole() {
+
+            // ...
+            return new Character(...);
+        }
+        static void ShowDialog() {
+            Console.WriteLine("Даров всем, введите:");
+            Console.WriteLine("Состояние ваших персонажей:");
+            //вывод состояния и здоровья каждого персонажа
+            int a = Int32.Parse(Console.ReadLine());
+            switch (a) {
+                case 1:
+                    // do smth
+                    break;
+                case 2:
+                    // do smth 
+                    break;
+                //........
+                default:
+                    Console.WriteLine("Такой команды не существует, попробуйте ещё раз");
+                    break;
+            }
+        }
+
+        static void Main(string[] args) {
+            CharacterMagician mainCharacter = ReadInfoAboutMagicianFromConsole();
+            Character satellite = ReadInfoAboutCharacterFromConsole();
+            /*
+             * Тут объявления врагов, можно вынести в функцию 
+             */
+            ShowDialog();
         }
     }
 }

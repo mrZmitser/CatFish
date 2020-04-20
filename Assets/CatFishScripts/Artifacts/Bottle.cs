@@ -9,6 +9,7 @@
             : base(power, isRechargeable) {
             Volume = volume;
         }
-        abstract public override void Activate(Characters.Character character, uint power = 0);
+        abstract public override void Cast(Characters.CharacterMagician magician = null,
+            Characters.Character character = null, uint power = 0);
     }
 }

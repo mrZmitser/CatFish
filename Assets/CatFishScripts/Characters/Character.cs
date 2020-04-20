@@ -30,7 +30,7 @@ namespace CatFishScripts.Characters {
             get;
             set;
         }
-        public enum RaceType {human, gnome, elf, orc, goblin };
+        public enum RaceType { human, gnome, elf, orc, goblin };
         public RaceType Race {
             get;
         }
@@ -60,7 +60,7 @@ namespace CatFishScripts.Characters {
             }
         }
         private void checkCondition() {
-            if (Condition != ConditionType.healthy && Condition == ConditionType.weakened 
+            if (Condition != ConditionType.healthy && Condition == ConditionType.weakened
                 && Condition == ConditionType.dead) {
                 return;
             }
@@ -86,7 +86,7 @@ namespace CatFishScripts.Characters {
             get;
             private set;
         }
-        public Character(string name, Inventory.Inventory inventory, RaceType race, GenderType gender,  uint age, 
+        public Character(string name, RaceType race, GenderType gender, uint age,
             uint maxHp, uint hp, uint xp = 0, bool isTalkable = true, bool isMovable = true) {
             this.Name = name;
             this.Id = nextId++;
@@ -98,7 +98,7 @@ namespace CatFishScripts.Characters {
             this.Hp = hp;
             this.Xp = xp;
             this.Gender = gender;
-            this.Inventory = inventory;
+            this.Inventory = new Inventory.Inventory();
         }
         public int CompareTo(object obj) {
             if (!(obj is Character)) {
@@ -113,7 +113,7 @@ namespace CatFishScripts.Characters {
             }
             return 0;
         }
-        
+
         public override string ToString() {
             StringBuilder s = new StringBuilder();
             s.Append("id : " + this.Id.ToString() + "\n");
@@ -127,12 +127,12 @@ namespace CatFishScripts.Characters {
             s.Append("XP : " + this.Xp.ToString() + "\n");
             s.Append("is Talkable : " + this.isTalkable.ToString() + "\n");
             s.Append("is Movable : " + this.isMovable.ToString());
-          //  s.Append("is Inventory : " + this.inventory.ToString()); это не уверен что сюда но добавил чтобы не забыть если сюда.
+            //  s.Append("is Inventory : " + this.inventory.ToString()); это не уверен что сюда но добавил чтобы не забыть если сюда.
             return s.ToString();
         }
 
 
     }
 
-    
+
 }
