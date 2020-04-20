@@ -50,9 +50,6 @@
     <Compile Include="Artifacts\Lightning.cs" />
     <Compile Include="Artifacts\LivingWaterBottle.cs" />
     <Compile Include="Artifacts\PoisonousSaliva.cs" />
-    <Compile Include="Characters\CharacterShop.cs" />
-    <Compile Include="Characters\CharactersNPC.cs" />
-    <Compile Include="Characters\QuestCharacter.cs" />
     <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Inventory\SpellsList.cs" />
     <Compile Include="Spells\AddHealth.cs" />
