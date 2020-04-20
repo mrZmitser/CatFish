@@ -1,19 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CatFishScripts.Artifacts {
+﻿namespace CatFishScripts.Artifacts {
     abstract class Artifact {
-
-        public enum KindType { armor, weapon, other };
-
-        public KindType Kind
-        {
-            get;
-        }
-
         //Сила артефакта
         public uint Power {
             get;
@@ -24,14 +10,20 @@ namespace CatFishScripts.Artifacts {
             get;
             set;
         }
-
-
-        //Конструктор
-        protected Artifact(uint power, bool isRechargeable) {
-            this.Power = power;
-            this.IsRechargeable = isRechargeable;
+        //тип артефакта
+        public enum KindType { weapon, armor, other };
+        public KindType Kind {
+            get;
+            private set;
         }
 
-
+        //Конструктор
+        public Artifact(KindType kind, uint power, bool isRechargeable) {
+            this.Power = power;
+            this.IsRechargeable = isRechargeable;
+            Kind = kind;
+        }
+        //Абстрактный метод активации артефакта -- у каждого артефакта свой
+        abstract public void Activate(Characters.Character character, uint power = 0);
     }
 }

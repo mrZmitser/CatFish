@@ -17,10 +17,10 @@ namespace CatFishScripts.Characters {
         }
             
 
-        public CharacterMagician(string name, RaceType race, GenderType gender, uint age,
-            uint maxHp, uint hp, uint mana, uint maxMana,
+        public CharacterMagician(string name, Inventory.Inventory inventory, RaceType race, GenderType gender,
+            uint age, uint maxHp, uint hp, uint mana, uint maxMana,
             uint xp = 0, bool isTalkable = true, bool isMovable = true)
-             : base(name, race, gender, age, maxHp, hp, xp, isTalkable, isMovable) {
+             : base(name, inventory, race, gender, age, maxHp, hp, xp, isTalkable, isMovable) {
             this.Mana = mana;
             this.MaxMana = maxMana;
         }

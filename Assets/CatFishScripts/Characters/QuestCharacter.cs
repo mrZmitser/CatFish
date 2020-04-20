@@ -7,7 +7,7 @@ using CatFishScripts.InventoryCsharp;
 
 namespace CatFishScripts.Characters
 {
-    class QuestCharacter: CharactersNPS
+    class QuestCharacter: CharactersNPC
     {
         public enum QuestProgress { completed, fresh, in_process };
         public QuestProgress QuestType

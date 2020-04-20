@@ -43,10 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Artifacts\BasiliskEye.cs" />
+    <Compile Include="Artifacts\Bottle.cs" />
+    <Compile Include="Artifacts\DeadWaterBottle.cs" />
+    <Compile Include="Artifacts\Decoctum.cs" />
+    <Compile Include="Artifacts\Lightning.cs" />
+    <Compile Include="Artifacts\LivingWaterBottle.cs" />
+    <Compile Include="Artifacts\PoisonousSaliva.cs" />
     <Compile Include="Characters\CharacterShop.cs" />
-    <Compile Include="Characters\CharactersNPS.cs" />
+    <Compile Include="Characters\CharactersNPC.cs" />
     <Compile Include="Characters\QuestCharacter.cs" />
-    <Compile Include="InventoryCsharp\InventoryCsharp.cs" />
+    <Compile Include="Inventory\Inventory.cs" />
+    <Compile Include="Inventory\SpellsList.cs" />
     <Compile Include="Spells\AddHealth.cs" />
     <Compile Include="Artifacts\Artifact.cs" />
     <Compile Include="Characters\Character.cs" />

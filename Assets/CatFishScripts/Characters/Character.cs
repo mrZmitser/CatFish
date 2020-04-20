@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using CatFishScripts.InventoryCsharp;
 
 namespace CatFishScripts.Characters {
     class Character : IComparable {
@@ -83,8 +82,11 @@ namespace CatFishScripts.Characters {
             get;
             set;
         }
-        public Inventory inventory = new Inventory();
-        public Character(string name, RaceType race, Inventory _inventory, GenderType gender,  uint age, 
+        public Inventory.Inventory Inventory {
+            get;
+            private set;
+        }
+        public Character(string name, Inventory.Inventory inventory, RaceType race, GenderType gender,  uint age, 
             uint maxHp, uint hp, uint xp = 0, bool isTalkable = true, bool isMovable = true) {
             this.Name = name;
             this.Id = nextId++;
@@ -96,7 +98,7 @@ namespace CatFishScripts.Characters {
             this.Hp = hp;
             this.Xp = xp;
             this.Gender = gender;
-            this.inventory = _inventory;
+            this.Inventory = inventory;
         }
         public int CompareTo(object obj) {
             if (!(obj is Character)) {

@@ -9,7 +9,10 @@ namespace CatFishScripts.Spells {
         public Revive(uint cost = 150, bool isVerbal = false, bool isMotor = false, bool hasPower = false)
             : base(cost, isVerbal, isMotor, hasPower) { }
         public override void onCast(Characters.CharacterMagician character, uint power) {
-            character.Hp = 1;
+            if (character.Condition == Characters.Character.ConditionType.paralyzed) {
+                character.Hp = 1;
+                character.Condition = Characters.Character.ConditionType.healthy;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using CatFishScripts.InventoryCsharp;
 
 namespace CatFishScripts.Characters
 {
-    class CharactersNPS
+    class CharactersNPC
     {
         static private uint nextId = 1;
         public string Name
@@ -51,7 +51,7 @@ namespace CatFishScripts.Characters
             set;
         }
         public Inventory inventory = new Inventory();
-        public CharactersNPS(string name, Inventory _inventory, RaceType race, GenderType gender, uint age,
+        public CharactersNPC(string name, Inventory _inventory, RaceType race, GenderType gender, uint age,
            uint maxHp, bool isTalkable = true, bool isMovable = true)
         {
             this.Name = name;
