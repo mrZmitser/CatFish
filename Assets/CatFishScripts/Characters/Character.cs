@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 
 namespace CatFishScripts.Characters {
     class Character : IComparable {
@@ -19,7 +20,7 @@ namespace CatFishScripts.Characters {
             }
             set {
                 _condition = value;
-                checkCondition();
+                CheckCondition();
             }
         }
         public bool isTalkable {
@@ -56,12 +57,33 @@ namespace CatFishScripts.Characters {
                 if (_hp > MaxHp) {
                     _hp = MaxHp;
                 }
-                checkCondition();
+                CheckCondition();
             }
         }
-        private void checkCondition() {
-            if (Condition != ConditionType.healthy && Condition == ConditionType.weakened
-                && Condition == ConditionType.dead) {
+        private Thread poisoningThread;
+        object poisoningLO = new object();
+        private void Poisoning() {
+            lock (poisoningLO) {
+                while (Condition == ConditionType.poisoned) {
+                    Hp -= 1;
+                    Monitor.Wait(poisoningLO, 2000);
+                }
+            }
+        }
+        private void CheckCondition() {
+            if (Condition == ConditionType.poisoned) {
+                poisoningThread = new Thread(Poisoning);
+                poisoningThread.Start();
+                poisoningThread.Join();
+                return;
+            }
+            if (poisoningThread != null) {
+                lock (poisoningLO) {
+                    Monitor.Pulse(poisoningLO);
+                }
+            }
+            if (Condition != ConditionType.healthy && Condition != ConditionType.weakened
+                && Condition != ConditionType.dead) {
                 return;
             }
             if (Hp == 0) {
@@ -127,7 +149,7 @@ namespace CatFishScripts.Characters {
             s.Append("XP : " + this.Xp.ToString() + "\n");
             s.Append("is Talkable : " + this.isTalkable.ToString() + "\n");
             s.Append("is Movable : " + this.isMovable.ToString());
-            //  s.Append("is Inventory : " + this.inventory.ToString()); это не уверен что сюда но добавил чтобы не забыть если сюда.
+            s.Append("Number of items : " + this.Inventory.Artifacts.Count.ToString()); 
             return s.ToString();
         }
 

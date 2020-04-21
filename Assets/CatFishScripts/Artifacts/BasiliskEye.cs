@@ -1,13 +1,15 @@
 ﻿using CatFishScripts.Characters;
+using System;
 
 namespace CatFishScripts.Artifacts {
     class BasiliskEye : Artifact {
-        public BasiliskEye() : base(0, false) { }
+        public BasiliskEye() : base(0, false, false) { }
 
-        public override void OnCast(Character character = null, uint power = 0) {
-            if (character.Condition != Character.ConditionType.dead) {
-                character.Condition = Character.ConditionType.paralyzed;
+        protected override void OnCast(Character character, uint power) {
+            if (character.Condition == Character.ConditionType.dead) {
+                throw new ArgumentException("Character cannot be dead");
             }
+            character.Condition = Character.ConditionType.paralyzed;
         }
     }
 }

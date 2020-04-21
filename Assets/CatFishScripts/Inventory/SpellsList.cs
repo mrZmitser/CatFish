@@ -17,15 +17,13 @@ namespace CatFishScripts.Inventory {
         public void AddSpell(Spell spell) {
             Spells.Add(spell);
         }
-        public bool RemoveSpell(Spell spell) {
-            return Spells.Remove(spell);
+        public bool RemoveSpell(int index) {
+            return Spells.Remove(Spells[index]);
         }
-        public bool CastSpell(Spell spell, Characters.Character character, uint power) {
-            int i = Spells.IndexOf(spell);
-            if (i == -1) {
-                return false;
-            }
-            spell.Cast(Owner, character, power);
+        public bool CastSpell(int index, Characters.Character character, uint power) {
+            if (index < 0 || index >= Spells.Count)
+                throw new KeyNotFoundException("There is no such index");
+            Spells[index].Cast(Owner, character, power);
             return true;
         }
     }

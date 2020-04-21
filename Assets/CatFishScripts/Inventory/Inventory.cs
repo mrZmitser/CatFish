@@ -15,21 +15,27 @@ namespace CatFishScripts.Inventory {
         public void AddArtifact(Artifact artifact) {
             Artifacts.Add(artifact);
         }
-        public bool RemoveArtifact(Artifact artifact) {
-            return Artifacts.Remove(artifact);
+        public bool RemoveArtifact(int index) {
+            if (index < 0 || index >= Artifacts.Count)
+                throw new KeyNotFoundException("There is no such index");
+            return Artifacts.Remove(Artifacts[index]);
         }
-        public void ExchangeArtifact(Character recipient, Artifact artifact) {
-            this.RemoveArtifact(artifact);
+        public void ExchangeArtifact(Character recipient, int index) {
+            Artifact artifact;
+            try {
+                artifact = Artifacts[index];
+            } catch {
+                throw new KeyNotFoundException("There is no such index");
+            }
+            this.RemoveArtifact(index);
             recipient.Inventory.AddArtifact(artifact);
         }
-        public bool ActivateArtifact(Artifact artifact, Character character, uint power = 0) {
-            int i = Artifacts.IndexOf(artifact);
-            if (i == -1) {
-                return false;
-            }
-            artifact.Cast(null, character, power);
-            if (!artifact.IsRechargeable) {
-                this.RemoveArtifact(artifact);
+        public bool ActivateArtifact(int index, Character character, uint power = 0) {
+            if (index < 0 || index >= Artifacts.Count)
+                throw new KeyNotFoundException("There is no such index");
+            Artifacts[index].Cast(null, character, power);
+            if (!Artifacts[index].IsRechargeable) {
+                this.RemoveArtifact(index);
             }
             return true;
         }

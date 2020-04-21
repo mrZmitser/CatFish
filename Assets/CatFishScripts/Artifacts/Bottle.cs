@@ -6,9 +6,9 @@
             set;
         }
         public Bottle(uint power, bool isRechargeable, VolumeType volume)
-            : base(power, isRechargeable) {
+            : base(power, isRechargeable, false) {
             Volume = volume;
         }
-        abstract public override void OnCast(Characters.Character character = null, uint power = 0);
+        abstract protected override void OnCast(Characters.Character character, uint power);
     }
 }
