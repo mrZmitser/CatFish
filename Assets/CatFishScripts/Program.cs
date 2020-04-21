@@ -20,6 +20,8 @@ namespace CatFishScripts {
             return new Character(...);
         }
         static void ShowDialog() {
+            Spells.AddHealth addHealth = new Spells.AddHealth();
+
             Console.WriteLine("Даров всем, введите:");
             Console.WriteLine("Состояние ваших персонажей:");
             //вывод состояния и здоровья каждого персонажа

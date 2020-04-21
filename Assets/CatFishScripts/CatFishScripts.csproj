@@ -62,6 +62,7 @@
     <Compile Include="Spells\Armor.cs" />
     <Compile Include="Spells\Heal.cs" />
     <Compile Include="IMagic.cs" />
+    <Compile Include="Spells\DieOff.cs" />
     <Compile Include="Spells\Revive.cs" />
     <Compile Include="Spells\Spell.cs" />
   </ItemGroup>
