@@ -3,7 +3,6 @@ using System.Threading;
 
 namespace CatFishScripts.Spells {
     class Armor : Spell {
-        Characters.Character character;
         int power;
         public Armor() : base(50, false, true, true) { }
         protected override void OnCast(Characters.Character character, uint power) {
