@@ -71,6 +71,11 @@ namespace CatFishScripts.Characters {
             }
         }
         private void CheckCondition() {
+            if (Hp == 0)
+            {
+                _condition = ConditionType.dead;
+                return;
+            }
             if (Condition == ConditionType.poisoned) {
                 poisoningThread = new Thread(Poisoning);
                 poisoningThread.Start();
@@ -85,14 +90,11 @@ namespace CatFishScripts.Characters {
             if (Condition != ConditionType.healthy && Condition != ConditionType.weakened
                 && Condition != ConditionType.dead) {
                 return;
-            }
-            if (Hp == 0) {
-                _condition = ConditionType.dead;
-            }
-            if (Hp > 0 && Hp < 10) {
+            }            
+            if (Hp > 0 && Hp < 0.1f * MaxHp) {
                 _condition = ConditionType.weakened;
             }
-            if (Hp >= 10) {
+            if (Hp >= 0.1f * MaxHp) {
                 _condition = ConditionType.healthy;
             }
         }
@@ -121,6 +123,7 @@ namespace CatFishScripts.Characters {
             this.Xp = xp;
             this.Gender = gender;
             this.Inventory = new Inventory.Inventory();
+            this.Condition = ConditionType.healthy;
         }
         public int CompareTo(object obj) {
             if (!(obj is Character)) {
@@ -148,7 +151,7 @@ namespace CatFishScripts.Characters {
             s.Append("Condition : " + this.Condition.ToString() + "\n");
             s.Append("XP : " + this.Xp.ToString() + "\n");
             s.Append("is Talkable : " + this.isTalkable.ToString() + "\n");
-            s.Append("is Movable : " + this.isMovable.ToString());
+            s.Append("is Movable : " + this.isMovable.ToString() + "\n");
             s.Append("Number of items : " + this.Inventory.Artifacts.Count.ToString()); 
             return s.ToString();
         }
