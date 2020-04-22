@@ -1,5 +1,5 @@
 ﻿namespace CatFishScripts.Artifacts {
-    abstract class PoisounousSaliva : Artifact {
+    class PoisounousSaliva : Artifact {
         public PoisounousSaliva(uint power) : base(power, true, true) { }
         protected override void OnCast(Characters.Character character, uint power) {
             if (character.Condition == Characters.Character.ConditionType.healthy ||
