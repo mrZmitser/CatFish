@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace CatFishScripts.Inventory {
     class SpellsList {
-        private List<Spell> Spells {
+        public List<Spell> Spells {
             get;
-            set;
+            private set;
         }
         Characters.CharacterMagician Owner {
             get;
