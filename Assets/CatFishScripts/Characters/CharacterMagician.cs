@@ -25,8 +25,7 @@ namespace CatFishScripts.Characters {
 
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             StringBuilder s = new StringBuilder();
             s.Append("id : " + this.Id.ToString() + "\n");
             s.Append("name : " + this.Name + "\n");

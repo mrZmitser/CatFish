@@ -27,7 +27,7 @@ namespace CatFishScripts.Artifacts {
         //абстрактный метод активации артефакта
         protected abstract void OnCast(Character character, uint power);
         //Реализация интерфейса IMagic (выполнение артефакта)
-        public  void Cast(Character character, uint power) {
+        public void Cast(Character character, uint power) {
             if (!this.HasPower) {
                 throw new ArgumentException("This artifact can't have a power");
             }
@@ -45,7 +45,7 @@ namespace CatFishScripts.Artifacts {
         public void Cast(CharacterMagician initiator, Character character) {
             throw new NotImplementedException("The initiator is not needed");
         }
-        
+
 
     }
 }

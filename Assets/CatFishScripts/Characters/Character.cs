@@ -65,14 +65,13 @@ namespace CatFishScripts.Characters {
         private void Poisoning() {
             lock (poisoningLO) {
                 while (Condition == ConditionType.poisoned) {
-                    Hp -= 1;
+                    Hp--;
                     Monitor.Wait(poisoningLO, 2000);
                 }
             }
         }
         private void CheckCondition() {
-            if (Hp == 0)
-            {
+            if (Hp == 0) {
                 _condition = ConditionType.dead;
                 return;
             }
@@ -90,7 +89,7 @@ namespace CatFishScripts.Characters {
             if (Condition != ConditionType.healthy && Condition != ConditionType.weakened
                 && Condition != ConditionType.dead) {
                 return;
-            }            
+            }
             if (Hp > 0 && Hp < 0.1f * MaxHp) {
                 _condition = ConditionType.weakened;
             }
@@ -122,7 +121,7 @@ namespace CatFishScripts.Characters {
             this.Hp = hp;
             this.Xp = xp;
             this.Gender = gender;
-            this.Inventory = new Inventory.Inventory();
+            this.Inventory = new Inventory.Inventory(this);
             this.Condition = ConditionType.healthy;
         }
         public int CompareTo(object obj) {
@@ -152,7 +151,7 @@ namespace CatFishScripts.Characters {
             s.Append("XP : " + this.Xp.ToString() + "\n");
             s.Append("is Talkable : " + this.isTalkable.ToString() + "\n");
             s.Append("is Movable : " + this.isMovable.ToString() + "\n");
-            s.Append("Number of items : " + this.Inventory.Artifacts.Count.ToString()); 
+            s.Append("Number of items : " + this.Inventory.Artifacts.Count.ToString());
             return s.ToString();
         }
 
