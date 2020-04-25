@@ -39,10 +39,10 @@ namespace CatFishScripts.Artifacts {
             }
             OnCast(character, 0);
         }
-        public void Cast(CharacterMagician initiator, Character character, uint power) {
+        public void Cast(Magician initiator, Character character, uint power) {
             throw new NotImplementedException("The initiator is not needed");
         }
-        public void Cast(CharacterMagician initiator, Character character) {
+        public void Cast(Magician initiator, Character character) {
             throw new NotImplementedException("The initiator is not needed");
         }
 

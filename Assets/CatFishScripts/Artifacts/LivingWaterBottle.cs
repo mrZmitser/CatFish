@@ -5,7 +5,9 @@ namespace CatFishScripts.Artifacts {
         public LivingWaterBottle(VolumeType volume) : base(0, false, volume) { }
 
         protected override void OnCast(Character character, uint power = 0) {
-            character.Hp += (uint)this.Volume;
+            if (character.Condition != Character.ConditionType.dead) {
+                character.Hp += (uint)this.Volume;
+            }
         }
     }
 }

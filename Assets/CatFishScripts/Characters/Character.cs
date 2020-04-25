@@ -23,11 +23,11 @@ namespace CatFishScripts.Characters {
                 CheckCondition();
             }
         }
-        public bool isTalkable {
+        public bool IsTalkable {
             get;
             set;
         }
-        public bool isMovable {
+        public bool IsMovable {
             get;
             set;
         }
@@ -61,33 +61,28 @@ namespace CatFishScripts.Characters {
             }
         }
         private Thread poisoningThread;
-        object poisoningLO = new object();
         private void Poisoning() {
-            lock (poisoningLO) {
-                while (Condition == ConditionType.poisoned) {
-                    Hp--;
-                    Monitor.Wait(poisoningLO, 2000);
+            while (Condition == ConditionType.poisoned && Hp > 0) {
+                lock (conditionLocker) {
+                    _hp--;
+                    Monitor.Wait(conditionLocker, 2000);
                 }
             }
         }
         private void CheckCondition() {
             if (Hp == 0) {
                 _condition = ConditionType.dead;
-                return;
             }
             if (Condition == ConditionType.poisoned) {
                 poisoningThread = new Thread(Poisoning);
                 poisoningThread.Start();
-                poisoningThread.Join();
                 return;
-            }
-            if (poisoningThread != null) {
-                lock (poisoningLO) {
-                    Monitor.Pulse(poisoningLO);
+            } else if (poisoningThread != null) {
+                lock (conditionLocker) {
+                    poisoningThread.Abort();
                 }
             }
-            if (Condition != ConditionType.healthy && Condition != ConditionType.weakened
-                && Condition != ConditionType.dead) {
+            if (Condition != ConditionType.healthy && Condition != ConditionType.weakened) {
                 return;
             }
             if (Hp > 0 && Hp < 0.1f * MaxHp) {
@@ -113,8 +108,8 @@ namespace CatFishScripts.Characters {
             uint maxHp, uint hp, uint xp = 0, bool isTalkable = true, bool isMovable = true) {
             this.Name = name;
             this.Id = nextId++;
-            this.isTalkable = isTalkable;
-            this.isMovable = isMovable;
+            this.IsTalkable = isTalkable;
+            this.IsMovable = isMovable;
             this.Race = race;
             this.Age = age;
             this.MaxHp = maxHp;
@@ -123,6 +118,7 @@ namespace CatFishScripts.Characters {
             this.Gender = gender;
             this.Inventory = new Inventory.Inventory(this);
             this.Condition = ConditionType.healthy;
+            conditionLocker = new object();
         }
         public int CompareTo(object obj) {
             if (!(obj is Character)) {
@@ -137,7 +133,6 @@ namespace CatFishScripts.Characters {
             }
             return 0;
         }
-
         public override string ToString() {
             StringBuilder s = new StringBuilder();
             s.Append("id : " + this.Id.ToString() + "\n");
@@ -149,14 +144,14 @@ namespace CatFishScripts.Characters {
             s.Append("HP : " + this.Hp.ToString() + "\n");
             s.Append("Condition : " + this.Condition.ToString() + "\n");
             s.Append("XP : " + this.Xp.ToString() + "\n");
-            s.Append("is Talkable : " + this.isTalkable.ToString() + "\n");
-            s.Append("is Movable : " + this.isMovable.ToString() + "\n");
+            s.Append("is Talkable : " + this.IsTalkable.ToString() + "\n");
+            s.Append("is Movable : " + this.IsMovable.ToString() + "\n");
             s.Append("Number of items : " + this.Inventory.Artifacts.Count.ToString());
             return s.ToString();
         }
-
-
+        public object conditionLocker {
+            get;
+        }
+        
     }
-
-
 }

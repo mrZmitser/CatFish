@@ -55,7 +55,7 @@
     <Compile Include="Spells\AddHealth.cs" />
     <Compile Include="Artifacts\Artifact.cs" />
     <Compile Include="Characters\Character.cs" />
-    <Compile Include="Characters\CharacterMagician.cs" />
+    <Compile Include="Characters\Magician.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spells\Antidote.cs" />
