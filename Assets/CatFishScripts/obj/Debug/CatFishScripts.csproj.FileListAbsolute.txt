@@ -19,3 +19,10 @@ D:\dimag\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.pdb
 D:\dimag\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.exe.config
 D:\dimag\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.exe
 D:\dimag\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.pdb
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.exe.config
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.exe
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\bin\Debug\CatFishScripts.pdb
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.csprojAssemblyReference.cache
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.csproj.CoreCompileInputs.cache
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.exe
+C:\Users\Надежда\Documents\GitHub\CatFish\Assets\CatFishScripts\obj\Debug\CatFishScripts.pdb
