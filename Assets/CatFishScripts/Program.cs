@@ -114,9 +114,13 @@ namespace CatFishScripts {
                 }
                 PrintAllCharactersShortInfo();
                 ReadUInt(ref receiverId, "Введите ID персонажа, на которого вы хотите использовать артефакт: ", new List<uint>(characters.Keys));
-                initiator.Inventory.ActivateArtifact((int)itemIndex - 1, characters[receiverId], power);
-                Console.WriteLine("Состояние персонажа, после воздействия артефакта:");
-                PrintShortInfo(receiverId);
+                try {
+                    initiator.Inventory.ActivateArtifact((int)itemIndex - 1, characters[receiverId], power);
+                    Console.WriteLine("Состояние персонажа, после воздействия артефакта:");
+                    PrintShortInfo(receiverId);
+                } catch (Exception ex) {
+                    Console.WriteLine("Возникла проблема : " + ex.Message);
+                }
             }
         }
 
@@ -130,19 +134,20 @@ namespace CatFishScripts {
                 return;
             }
             Console.WriteLine("Количество Вашей маны : {0} из {1}", (initiator as Magician).Mana, (initiator as Magician).MaxMana);
-            GetSpellsInfo(initiator);
             if ((initiator as Magician).SpellsList.Spells.Count > 0) {
                 uint receiverId = 0, i = 0, power = 1;
-                PrintAllCharactersShortInfo();
-                ReadUInt(ref receiverId, "Введите ID персонажа, на которого вы хотите использовать заклинания: ", new List<uint>(characters.Keys));
+                GetSpellsInfo(initiator);
                 ReadUInt(ref i, "Введите номер заклинания, который вы хотите использовать: ", 1,
                     (uint)(initiator as Magician).SpellsList.Spells.Count);
                 if ((initiator as Magician).SpellsList.Spells[(int)i - 1].HasPower) {
                     ReadUInt(ref power, "Введите мощность: ", 1);
                 }
+                PrintAllCharactersShortInfo();
+                ReadUInt(ref receiverId, "Введите ID персонажа, на которого вы хотите использовать заклинания: ", new List<uint>(characters.Keys));
+
                 try {
                     (initiator as Magician).SpellsList.CastSpell((int)i - 1, characters[receiverId], power);
-                    Console.WriteLine("Состояние персонажа, после воздействия артефакта:");
+                    Console.WriteLine("Состояние персонажа, после воздействия заклинания:");
                     PrintShortInfo(receiverId);
                 } catch (Exception ex) {
                     Console.WriteLine("Возникла проблема : " + ex.Message);

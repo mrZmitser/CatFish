@@ -26,9 +26,6 @@ namespace CatFishScripts.Spells {
             if (initiator.Condition == Character.ConditionType.dead) {
                 throw new ArgumentException("Initiator cannot be dead");
             }
-            if (!this.HasPower) {
-                throw new ArgumentException("Using power for a spell that does not have a power");
-            }
             if (Cost * power > initiator.Mana) {
                 throw new ArgumentException("Not enough mana");
             }

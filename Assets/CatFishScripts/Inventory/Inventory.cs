@@ -42,10 +42,10 @@ namespace CatFishScripts.Inventory {
         }
         public bool ActivateArtifact(int index, Character character, uint power = 0) {
             if (Owner.Condition == Character.ConditionType.dead) {
-                throw new System.AggregateException("The initiator cannot be dead");
+                throw new System.ArgumentException("The initiator cannot be dead");
             }
             if (index < 0 || index >= Artifacts.Count) {
-                throw new System.AggregateException("There is no such index");
+                throw new System.ArgumentException("There is no such index");
             }
             if (Artifacts[index].HasPower) {
                 Artifacts[index].Cast(character, power);

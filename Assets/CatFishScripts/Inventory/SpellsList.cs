@@ -17,7 +17,7 @@ namespace CatFishScripts.Inventory {
         }
         public void AddSpell(Spell spell) {
             if (Owner.Condition == Character.ConditionType.dead) {
-                throw new System.AggregateException("The initiator cannot be dead");
+                throw new System.ArgumentException("The initiator cannot be dead");
             }
             Spells.Add(spell);
         }
@@ -26,10 +26,10 @@ namespace CatFishScripts.Inventory {
         }
         public bool CastSpell(int index, Character character, uint power) {
             if (Owner.Condition == Character.ConditionType.dead) {
-                throw new System.AggregateException("The initiator cannot be dead");
+                throw new System.ArgumentException("The initiator cannot be dead");
             }
             if (index < 0 || index >= Spells.Count)
-                throw new KeyNotFoundException("There is no such index");
+                throw new System.ArgumentException("There is no such index");
             if (Spells[index].HasPower) {
                 Spells[index].Cast(Owner, character, power);
             } else {
