@@ -17,14 +17,11 @@ namespace CatFishScripts.Inventory {
             Owner = owner;
         }
         public void AddArtifact(Artifact artifact) {
-            if (Owner.Condition == Character.ConditionType.dead) {
-                throw new System.ArgumentException("The initiator cannot be dead");
-            }
             Artifacts.Add(artifact);
         }
         public bool RemoveArtifact(int index) {
             if (index < 0 || index >= Artifacts.Count)
-                throw new System.ArgumentException("There is no such index");
+                throw new KeyNotFoundException("There is no such index");
             return Artifacts.Remove(Artifacts[index]);
         }
         public void ExchangeArtifact(Character recipient, int index) {
@@ -32,10 +29,7 @@ namespace CatFishScripts.Inventory {
             try {
                 artifact = Artifacts[index];
             } catch {
-                throw new System.ArgumentException("There is no such index");
-            }
-            if (recipient.Condition == Character.ConditionType.dead) {
-                throw new System.ArgumentException("The receiver cannot be dead");
+                throw new KeyNotFoundException("There is no such index");
             }
             this.RemoveArtifact(index);
             recipient.Inventory.AddArtifact(artifact);
@@ -47,11 +41,7 @@ namespace CatFishScripts.Inventory {
             if (index < 0 || index >= Artifacts.Count) {
                 throw new System.AggregateException("There is no such index");
             }
-            if (Artifacts[index].HasPower) {
-                Artifacts[index].Cast(character, power);
-            } else {
-                Artifacts[index].Cast(character);
-            }
+            Artifacts[index].Cast(null, character, power);
             if (!Artifacts[index].IsRechargeable) {
                 this.RemoveArtifact(index);
             }

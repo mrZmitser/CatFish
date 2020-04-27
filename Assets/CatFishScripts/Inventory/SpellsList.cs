@@ -1,5 +1,4 @@
 ﻿using CatFishScripts.Spells;
-using CatFishScripts.Characters;
 using System.Collections.Generic;
 
 namespace CatFishScripts.Inventory {
@@ -8,33 +7,23 @@ namespace CatFishScripts.Inventory {
             get;
             private set;
         }
-        Magician Owner {
+        Characters.CharacterMagician Owner {
             get;
         }
-        public SpellsList(Characters.Magician owner) {
+        public SpellsList(Characters.CharacterMagician owner) {
             Spells = new List<Spell>();
             Owner = owner;
         }
         public void AddSpell(Spell spell) {
-            if (Owner.Condition == Character.ConditionType.dead) {
-                throw new System.AggregateException("The initiator cannot be dead");
-            }
             Spells.Add(spell);
         }
         public bool RemoveSpell(int index) {
             return Spells.Remove(Spells[index]);
         }
-        public bool CastSpell(int index, Character character, uint power) {
-            if (Owner.Condition == Character.ConditionType.dead) {
-                throw new System.AggregateException("The initiator cannot be dead");
-            }
+        public bool CastSpell(int index, Characters.Character character, uint power) {
             if (index < 0 || index >= Spells.Count)
                 throw new KeyNotFoundException("There is no such index");
-            if (Spells[index].HasPower) {
-                Spells[index].Cast(Owner, character, power);
-            } else {
-                Spells[index].Cast(Owner, character);
-            }
+            Spells[index].Cast(Owner, character, power);
             return true;
         }
     }
