@@ -354,12 +354,10 @@ namespace CatFishScripts {
                         ReadUInt(ref tmp, "Введите ID персонажа, информацию о котором вы хотите узнать (0 - для всех)", values);
                         if (tmp == 0) {
                             foreach (var character in characters) {
-                                Console.WriteLine(character);
+                                Console.WriteLine(character.Value.ToString());
+                                Console.WriteLine();
                             }
                         } else {
-                            if (typeof(Magician) == characters[tmp].GetType()) {
-                                Console.WriteLine((characters[tmp] as Magician).ToString());
-                            }
                             Console.WriteLine(characters[tmp].ToString());
                         }
                         break;
