@@ -1,11 +1,14 @@
 ﻿using CatFishScripts.Characters;
 
 namespace CatFishScripts.Artifacts {
-    class LivingWaterBottle : Bottle {
-        public LivingWaterBottle(VolumeType volume) : base(0, false, volume) { }
+    public class LivingWaterBottle : Bottle {
+        public LivingWaterBottle(string name, string description, VolumeType volume) : base(
+            name, description, 0, false, volume) { }
 
         protected override void OnCast(Character character, uint power = 0) {
-            character.Hp += (uint)this.Volume;
+            if (character.Condition != Character.ConditionType.dead) {
+                character.Hp += (uint)this.Volume;
+            }
         }
     }
 }

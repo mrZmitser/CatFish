@@ -1,9 +1,9 @@
 ﻿namespace CatFishScripts.Artifacts {
-    class Lightning : Artifact {
-        public Lightning(uint power) : base(power, true, true) { }
+    public class Lightning : Artifact {
+        public Lightning(string name, string description, uint power) :
+            base(name, description, power, true, true) { }
         protected override void OnCast(Characters.Character character, uint power) {
-            if (power > 0 && character.Condition != Characters.Character.ConditionType.invulnerable) {
-                this.Power -= power;
+            if (character.Condition != Characters.Character.ConditionType.invulnerable) {
                 character.Hp -= power;
             }
         }

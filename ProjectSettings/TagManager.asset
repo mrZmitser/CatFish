@@ -4,8 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Road
-  - Collection
+  - Door
+  - Tree
+  - PickUp
+  - Enemy
+  - FightZone
+  - PickUpUnique
+  - Talkable
+  - ExitBlocker
+  - PickUpSpell
   layers:
   - Default
   - TransparentFX
